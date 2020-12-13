@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/person';
+import Persons from '../component/Persons/persons';
+import Cockpit from '../component/Cockpit/cockpit';
 import Styled from 'styled-components';
 
 const StyleButton = Styled.button`
@@ -56,45 +57,33 @@ class App extends Component {
 
   render () {
 
-    const classes = [];
-
-    if(this.state.persons.length <= 2)
-    {
-      classes.push('color');
-    }
-    if(this.state.persons.length <= 1)
-    {
-      classes.push('fontSize');
-    }
-
     let persons = null;
 
     if(this.state.showPersons)
     {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            return <Person 
-            key={person.id}
-            name={person.name} 
-            age={person.age} 
-            click={() => this.deletPersonHandler(index)}
-            changed={event => this.nameChangedHandler(event, person.id)}
-            />
-          })}
+          <Persons 
+          persons = {this.state.persons}
+          click={this.deletPersonHandler}
+          changed={this.nameChangedHandler}
+          />
         </div>     
       );
     }
 
     return (
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        <StyleButton bg={this.state.showPersons} onClick={this.toggleChangeHandler}>Toggle Person</StyleButton> 
-        {persons}
-      </div>
+
+        <div className="App">
+        <Cockpit 
+              persons={this.state.persons}
+              bg={this.state.showPersons}
+              click={this.toggleChangeHandler}
+              />
+              {persons}
+        </div>      
+
     );
-    // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 
