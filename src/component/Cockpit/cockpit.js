@@ -3,6 +3,7 @@ import React from 'react';
 import './cockpit.css';
 import Styled from 'styled-components';
 
+
 const StyleButton = Styled.button`
       background-color: ${ props => props.bg ? 'red' : 'green'};
       color: white;

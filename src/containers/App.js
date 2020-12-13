@@ -2,22 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Persons from '../component/Persons/persons';
 import Cockpit from '../component/Cockpit/cockpit';
-import Styled from 'styled-components';
-
-const StyleButton = Styled.button`
-      background-color: ${ props => props.bg ? 'red' : 'green'};
-      color: white;
-      font: inherit;
-      border: 1px solid blue;
-      padding: 8px;
-      cursor: pointer;
-
-      &:hover {
-        background-color : ${ props => props.bg ? 'pink' : 'lightgreen'};
-        color: black;
-      }
-`;
-
 
 class App extends Component {
   state = {
@@ -73,7 +57,7 @@ class App extends Component {
     }
 
     return (
-
+      
         <div className="App">
         <Cockpit 
               persons={this.state.persons}
