@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import './cockpit.css';
 import Styled from 'styled-components';
@@ -19,6 +19,23 @@ const StyleButton = Styled.button`
 `;
 
 const cockpit = (props) => {
+
+  useEffect( () => {
+    console.log('[Cockpit.js] useEffect runs 1');
+    setTimeout( () => {
+      console.log('[Cockpit.js] cockpit runs after timeout');
+    },2000);
+    return () => {
+      console.log('[Cockpit.js] cleanup function runs 1')
+    }
+  },[]);
+
+  useEffect( () => {
+    console.log('[Cockpit.js] useEffect runs 2');
+    return () => {
+      console.log('[Cockpit.js] cleanup function runs 2')
+    }
+  })
 
     const classes = [];
 
