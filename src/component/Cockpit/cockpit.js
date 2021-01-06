@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 
 import './cockpit.css';
 import Styled from 'styled-components';
@@ -20,11 +20,14 @@ const StyleButton = Styled.button`
 
 const cockpit = (props) => {
 
+  const toggleBtnRef = useRef();
+
   useEffect( () => {
     console.log('[Cockpit.js] useEffect runs 1');
     setTimeout( () => {
       console.log('[Cockpit.js] cockpit runs after timeout');
-    },2000);
+      toggleBtnRef.current.click();
+    },3000);
     return () => {
       console.log('[Cockpit.js] cleanup function runs 1')
     }
@@ -53,9 +56,10 @@ return (
     <h1>{props.title}</h1>
     <p className={classes.join(' ')}>This is really working!</p>
     <StyleButton 
+    ref={toggleBtnRef}
     bg={props.showPersons} 
     onClick={props.click}>Toggle Person</StyleButton> 
  </div>
 )}
 
-export default cockpit;
+export default React.memo(cockpit);
